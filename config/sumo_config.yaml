@@ -1,0 +1,13 @@
+sumo:
+  net_file: "scenarios/simple_grid/osm.net.xml"
+  route_file: "scenarios/simple_grid/osm.passenger.trips.xml"
+  use_gui: false
+  num_seconds: 3600
+  delta_time: 1
+  yellow_time: 0.5
+  min_green: 10
+  max_green: 60
+  sumo_seed: 327
+  reward_fn: "diff-waiting-time"
+  single_agent: false
+  fixed_ts: true

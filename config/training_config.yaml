@@ -1,0 +1,44 @@
+training:
+  algorithm: "MAPPO"
+  num_workers: 4
+  num_gpus: 1
+  num_gpus_per_worker: 0
+  framework: "torch"
+  
+  train_batch_size: 4000
+  sgd_minibatch_size: 128
+  num_sgd_iter: 10
+  
+  lr: 0.0003
+  gamma: 0.99
+  lambda: 0.95
+  clip_param: 0.2
+  vf_clip_param: 10.0
+  entropy_coeff: 0.01
+  
+  rollout_fragment_length: 100
+  batch_mode: "truncate_episodes"
+  sample_timeout_s: 300
+  
+  model:
+    fcnet_hiddens: [256, 256]
+    fcnet_activation: "relu"
+    vf_share_layers: false
+  
+  evaluation:
+    evaluation_interval: 10
+    evaluation_duration: 10
+    evaluation_num_workers: 1
+    evaluation_config:
+      explore: false
+  
+  checkpoint:
+    checkpoint_freq: 10
+    checkpoint_at_end: true
+    keep_checkpoints_num: 5
+  
+  stopping_criteria:
+    training_iteration: 500
+    episode_reward_mean: 1000
+    timesteps_total: 1000000
+
